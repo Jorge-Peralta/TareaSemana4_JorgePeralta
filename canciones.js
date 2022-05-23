@@ -38,7 +38,7 @@ router.get("/canciones", (req, res) => {
 
 router.get("/canciones/year", function (req, res) {
   // hace un query de los documentos
-  Cancion.find({ anio: { $gt: req.query.anio } }, function (err, canciones) {
+  Cancion.find({ anio: req.query.anio }, function (err, canciones) {
     if (err) {
       console.log(err);
       res.status(500).send("Error al leer de la base de datos2");
