@@ -16,10 +16,11 @@ mongoose
 const cancionSchema = new mongoose.Schema(
   {
     //_id: mongoose.Schema.Types.ObjectId,
-    cancion: String,
     artista: String,
-    año: Number,
+    cancion: String,
     pais: String,
+    album: String,
+    anio: Number,
   },
   {
     collection: "Canciones",
@@ -59,15 +60,11 @@ router.get("/canciones/betyears", function (req, res) {
 });
 
 router.get("/canciones/artista", function (req, res) {
-  // busca caciones por nombre de artista
-  const nombre = {};
   Cancion.find({ artista: req.query.artista }, function (err, canciones) {
-    if (err) res.status(500).send("Error en la base de datos6 ");
-    else {
-      if (canciones != null) {
-        res.status(200).json(canciones);
-      } else res.status(404).send("No se encontro esa cancion");
-    }
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error al leer de la BD x Artista");
+    } else res.status(200).json(canciones);
   });
 });
 
@@ -83,15 +80,13 @@ router.get("/canciones/:id", function (req, res) {
   });
 });
 
-// crear un nuevo registro de canciones
 router.post("/canciones", function (req, res) {
-  // crea un objeto pero del modelo musica
   const cancion1 = new Cancion({
-    cancion: req.body.cancion,
     artista: req.body.artista,
+    cancion: req.body.cancion,
+    pais: req.body.pais,
     album: req.body.album,
     anio: req.body.anio,
-    pais: req.body.pais,
   });
   // guarda una musica en la base de datos
   cancion1.save(function (error, cancion1) {
@@ -112,9 +107,9 @@ router.put("/canciones/:id", function (req, res) {
       if (cancion != null) {
         cancion.cancion = req.body.cancion;
         cancion.artista = req.body.artista;
-        cancion.album = req.body.album;
         cancion.anio = req.body.anio;
         cancion.pais = req.body.pais;
+        cancion.album = req.body.album;
 
         cancion.save(function (error, cancion1) {
           if (error) res.status(500).send("Error en la base de datos");
