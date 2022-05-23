@@ -1,0 +1,24 @@
+{
+  "name": "tareasemana4_jorgeperalta",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jorge-Peralta/TareaSemana4_JorgePeralta.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jorge-Peralta/TareaSemana4_JorgePeralta/issues"
+  },
+  "homepage": "https://github.com/Jorge-Peralta/TareaSemana4_JorgePeralta#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4"
+  }
+}
